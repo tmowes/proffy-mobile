@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigation } from '@react-navigation/native'
+
+import api from '../../services/api'
 
 import {
   Container,
@@ -18,6 +20,15 @@ import {
 
 const Landing: React.FC = () => {
   const { navigate } = useNavigation()
+  const [totalConnections, setTotalConnections] = useState(0)
+
+  useEffect(() => {
+    async function loadConnections() {
+      const { data } = await api.get('connections')
+      setTotalConnections(data.total)
+    }
+    loadConnections()
+  }, [])
 
   return (
     <Container>
@@ -35,7 +46,7 @@ const Landing: React.FC = () => {
         </GiveClassesButton>
       </ButtonsContainer>
       <Connections>
-        {'Total de 69 conexões já realizadas  '}
+        {`Total de ${totalConnections} conexões já realizadas  `}
         <HeartIcon />
       </Connections>
     </Container>

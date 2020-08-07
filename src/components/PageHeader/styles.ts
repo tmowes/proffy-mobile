@@ -31,5 +31,10 @@ export const Title = styled.Text`
   font-size: 24px;
   line-height: 32px;
   max-width: 160px;
-  margin: 40px 0;
+  margin: 24px 0;
+`
+export const Header = styled.View`
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 `

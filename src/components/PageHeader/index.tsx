@@ -7,11 +7,16 @@ import {
   BackButton,
   BackIcon,
   LogoImage,
+  Header,
   Title,
 } from './styles'
 import { PageHeaderProps } from './types'
 
-const PageHeader: React.FC<PageHeaderProps> = ({ title }) => {
+const PageHeader: React.FC<PageHeaderProps> = ({
+  title,
+  headerRight,
+  children,
+}) => {
   const { navigate } = useNavigation()
   return (
     <Container>
@@ -21,7 +26,11 @@ const PageHeader: React.FC<PageHeaderProps> = ({ title }) => {
         </BackButton>
         <LogoImage />
       </TopBar>
-      <Title>{title}</Title>
+      <Header>
+        <Title>{title}</Title>
+        {headerRight}
+      </Header>
+      {children}
     </Container>
   )
 }
